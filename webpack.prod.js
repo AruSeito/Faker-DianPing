@@ -7,10 +7,22 @@ const common = require('./webpack.common');
 module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
+  module: {
+    rules: [
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "sass-loader",
+        ],
+      },
+    ]
+  },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: "css/[name].css",
+      chunkFilename: "css/[id].css"
     }),
     new CleanWebpackPlugin()
   ]

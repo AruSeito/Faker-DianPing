@@ -8,7 +8,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js']
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: 'js/[name].[chunkhash:8].js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -21,9 +21,7 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          process.env.NODE_ENV !== "prod"
-            ? "style-loader"
-            : MiniCssExtractPlugin.loader,
+          "style-loader",
           "css-loader",
           "sass-loader",
         ],
